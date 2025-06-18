@@ -1,0 +1,43 @@
+---
+// Fundations
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
+const links = [
+  {
+    platform: "X",
+    url: "https://x.com/Mike_Andreuzza",
+  },
+  {
+    platform: "GitHub",
+    url: "#_",
+  },
+  {
+    platform: "Linkedin",
+    url: "#_",
+  },
+  {
+    platform: "Email",
+    url: "",
+  },
+];
+---
+
+<section>
+  <Wrapper variant="standard">
+    <div
+      class="grid grid-cols-1 gap-4 md:grid-cols-3 border-b py-8 border-base-200"
+    >
+      <Text tag="h3" variant="textSM" class="text-base-900">Socials</Text>
+      <div class="space-y-2 lg:col-span-2">
+        {
+          links.map((social) => (
+            <Text tag="p" variant="textXS" class="text-base-600   ">
+              {social.platform}
+            </Text>
+          ))
+        }
+      </div>
+    </div>
+  </Wrapper>
+</section>

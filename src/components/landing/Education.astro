@@ -3,7 +3,7 @@
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 // Data
-const education = [
+const data = [
   {
     period: "2020–2022",
     title: "Master's in Graphic Design",
@@ -13,7 +13,7 @@ const education = [
   {
     period: "2016–2020",
     title: "Bachelor's in Visual Communication",
-    description: `Studied visual communication with an emphasis on minimalist design and the history of Swiss typography. Participated in design workshops and exhibitions.`,
+    description: `Studied visual communication with an emphasis on minimalist design and the history of Swiss typography. Participated in design datashops and exhibitions.`,
     location: "University of Applied Sciences, Basel, Switzerland",
   },
   {
@@ -26,51 +26,34 @@ const education = [
 ---
 
 <section>
-  <Wrapper variant="base" class="py-12">
-    <Text
-      tag="h3"
-      variant="textBase"
-      class="font-semibold text-zinc-900 dark:text-zinc-200"
+  <Wrapper variant="standard">
+    <div
+      class="grid grid-cols-1 gap-4 md:grid-cols-3 border-b py-8 border-base-200"
     >
-      Education
-    </Text>
-
-    <div class="flex flex-col gap-12 mt-8">
-      {
-        education.map((work, index) => (
-          <div class="grid grid-cols-1  gap-4 md:grid-cols-2 lg:grid-cols-5">
-            {/* Period */}
-            <Text tag="span" variant="textSM" class="font-medium text-zinc-500">
-              {work.period}
-            </Text>
-
-            {/* Work Content */}
-            <div class="lg:col-span-4">
-              <Text
-                tag="h4"
-                variant="textBase"
-                class="font-semibold text-zinc-900 dark:text-zinc-200  flex justify-between w-full"
-              >
-                {work.title}
+      <Text tag="h3" variant="textSM" class="text-base-900"> Education </Text>
+      <div class="flex flex-col gap-12 lg:col-span-2">
+        {
+          data.map((data, index) => (
+            <article class="group relative grid grid-cols-1 gap-4 lg:grid-cols-3 lg:items-start ">
+              <div class="lg:col-span-2">
+                <Text
+                  tag="h3"
+                  variant="textSM"
+                  class=" font-medium tracking-tight text-base-900   "
+                >
+                  {data.title}
+                </Text>
+                <Text tag="p" variant="textXS" class=" mt-1 text-base-600    ">
+                  {data.description}
+                </Text>
+              </div>
+              <Text tag="p" variant="textXS" class="text-base-400  lg:ml-auto">
+                <time datetime={data.period}> {data.period}</time>
               </Text>
-              <Text
-                tag="p"
-                variant="textSM"
-                class="text-zinc-600 dark:text-zinc-500  mt-2"
-              >
-                {work.description}
-              </Text>
-              <Text
-                tag="p"
-                variant="textSM"
-                class="text-zinc-600 dark:text-zinc-500  mt-2"
-              >
-                {work.location}
-              </Text>
-            </div>
-          </div>
-        ))
-      }
+            </article>
+          ))
+        }
+      </div>
     </div>
   </Wrapper>
 </section>
