@@ -62,6 +62,8 @@ const relatedPosts = allPosts.filter((post) =>
           <Image
             width={1000}
             height={800}
+            loading="eager"
+            decoding="async"
             alt={frontmatter.image.alt}
             src={frontmatter.image.url}
             class="object-cover object-center w-full  aspect-12/6 lg:col-span-2 rounded-xl"
