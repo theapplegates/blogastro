@@ -2,23 +2,22 @@
 // Fundations
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-
 ---
 
 <footer>
   <Wrapper variant="standard">
     <div
-      class="grid grid-cols-1 gap-4 md:grid-cols-3 border-b py-8 border-base-200  "
+      class="grid grid-cols-1 gap-4 md:grid-cols-3 border-b pt-8 pb-24 border-base-200 dark:border-base-800"
     >
-      <Text tag="h3" variant="textSM" class="text-base-900  ">
+      <Text tag="h3" variant="textSM" class="text-base-900 dark:text-white">
         Helsinki, Finland
-        <span id="clock" class="block text-base-600    text-xs">
+        <span id="clock" class="block text-base-600 dark:text-base-400 text-xs">
         </span>
       </Text>
       <Text
         tag="p"
         variant="textXS"
-        class="text-base-600    lg:col-span-2"
+        class="text-base-600 dark:text-base-400 lg:col-span-2"
       >
         © Copyright Lexington Themes <span id="year"></span>. All rights
         reserved. Designed and built in the Åland Islands by Michael Andreuzza.
@@ -27,42 +26,28 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
   </Wrapper>
 </footer>
 <script type="module">
+  // Function to update the clock display with Helsinki time
   function updateClock() {
-    // Create a new Date object based on Helsinki's timezone
-    const now = new Date().toLocaleString("en-US", {
-      timeZone: "Europe/Helsinki",
+    // Get current date/time
+    const now = new Date();
+    // Format time for Helsinki timezone in 12-hour format
+    const time = now.toLocaleTimeString("en-US", {
+      timeZone: "Europe/Helsinki", // Convert to Helsinki time
+      hour12: true, // Use 12-hour format (AM/PM)
+      hour: "2-digit", // Always show 2 digits for hour (01, 02, etc.)
+      minute: "2-digit", // Always show 2 digits for minutes (01, 02, etc.)
     });
-    // Convert the time string to a Date object
-    const dateObj = new Date(now);
-    let hours = dateObj.getHours(); // 0-23
-    const minutes = dateObj.getMinutes(); // 0-59
-    // Show seconds if you want to remove the comment from here
-    // const seconds = dateObj.getSeconds(); // 0-59
-    const period = hours >= 12 ? "PM" : "AM"; // Determine if it's AM or PM
-    // Convert hours to 12-hour format
-    hours = hours % 12;
-    hours = hours ? hours : 12; // Handle the case for 12 AM and 12 PM
-    // Format time as HH:MM:SS AM/PM
-    const timeString =
-      [
-        hours.toString().padStart(2, "0"),
-        minutes.toString().padStart(2, "0"),
-        // Show seconds if you want to remove the comment from here
-        // seconds.toString().padStart(2, "0"),
-      ].join(":") +
-      " " +
-      period;
-    // Update the clock element with the time
-    document.getElementById("clock").textContent = timeString;
+    // Update the clock element in the DOM with the formatted time
+    document.getElementById("clock").textContent = time;
   }
-  // Update the year every second
+  // Function to update the copyright year
   function updateYear() {
-    const currentYear = new Date().getFullYear(); // Get the current year
-    document.getElementById("year").textContent = currentYear; // Update the year in the span
+    // Get current year and update the year span element
+    document.getElementById("year").textContent = new Date().getFullYear();
   }
-  // Update the clock every second
-  setInterval(updateClock, 1000);
-  // Initialize the clock and year
+  // Initialize both clock and year on page load
   updateClock();
   updateYear();
+  // Set up automatic clock updates every 1000ms (1 second)
+  setInterval(updateClock, 1000);
 </script>
