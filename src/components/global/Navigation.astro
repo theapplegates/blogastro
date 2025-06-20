@@ -6,6 +6,7 @@ import Button from "@/components/fundations/elements/Button.astro";
 // Icons
 import Eye from "@/components/fundations/icons/Eye.astro";
 import Cart from "@/components/fundations/icons/Cart.astro";
+import Book from "@/components/fundations/icons/Book.astro";
 // Scripts
 import ThemeToggle from "@/components/assets/ThemeToggle.astro";
 ---
@@ -27,6 +28,15 @@ import ThemeToggle from "@/components/assets/ThemeToggle.astro";
         href="/system/overview"
       >
         <Eye slot="icon" size="sm" />
+      </Button>
+       <Button
+        isLink={true}
+        iconOnly
+        size="base"
+        variant="muted"
+        href="/blog/"
+      >
+        <Book slot="icon" size="sm" />
       </Button>
       <ThemeToggle />
       <Button isLink={true} iconOnly size="base" variant="muted" href="https://buy.polar.sh/polar_cl_eyHNPWW7mijKnLic9hIog326Sm6fUbL3jCS_r9zLKqE">
